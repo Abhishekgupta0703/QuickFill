@@ -1,0 +1,53 @@
+.sticky-top {
+  position: sticky;
+  top: 0;
+  margin: 0;
+  --text: #e6e6e6;
+  width: 100%;
+  color: var(--text);
+  display: flex;
+  height: 60px;
+  align-items: center;
+  align-items: center;
+  background: #0163cb;
+  z-index: 1;
+}
+
+.nav-logo {
+  margin-left: 2rem;
+}
+.nav-list {
+  display: flex;
+  list-style-type: none;
+  margin-inline: auto 2rem;
+  /* gap: 2rem; */
+  position: relative;
+  align-items: center;
+}
+.nav-link {
+  line-height: 1;
+  text-decoration: none;
+  color: var(--text);
+  text-align: center;
+  position: relative;
+}
+.nav-link h4 {
+  width: max-content;
+  line-height: 1;
+  margin: 0;
+  padding: 20px 20px;
+}
+.nav-link h4::after {
+  content: "";
+  height: 2px;
+  width: 0;
+  left: 25%;
+  background: var(--text);
+  position: absolute;
+  bottom: 15px;
+  transition: all ease 1s;
+}
+.nav-link h4:hover::after {
+  width: 50%;
+  transition: all ease 0.3s;
+}
