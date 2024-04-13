@@ -10,6 +10,8 @@ import Home from './pages/Home'
 import PetrolPump from './pages/PetrolPump'
 import Footer from './components/Footer'
 import AddPetrolPump from './pages/AddPetrolPump'
+import ProfilePage from './pages/ProfilePage'
+// import Profile from './pages/Profile'
 
 export default function App() {
   return (
@@ -22,8 +24,10 @@ export default function App() {
           <Route path='/' element={<Home />} />
           <Route element={<Private />} >
             <Route path='/PetrolPump' element={<PetrolPump />} />
-            <Route path="/PetrolPump/:id" element={<PetrolPump />} />
+            <Route path="/PetrolPumps/:id" element={<PetrolPump />} />
             <Route path="/AddPetrolPump" element={<AddPetrolPump />} />
+            <Route path="/Profile" element={<ProfilePage />} />
+            {/* <Route path="/Profile" element={<Profile />} /> */}
             <Route path='/logout' element={<h1>Logout</h1>} />
           </Route>
 

@@ -12,7 +12,7 @@ export default function Signup() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const auth = localStorage.getItem("user");
+        const auth = localStorage.getItem("token");
         if (auth) {
             navigate("/");
         }
@@ -35,7 +35,7 @@ export default function Signup() {
             if (result.error) {
                 toast.error(result.error);
             } else {
-                localStorage.setItem("user", JSON.stringify(result));
+                localStorage.setItem("token", JSON.stringify(result));
                 toast.success("Registered Successfully!");
                 navigate("/");
             }
@@ -54,7 +54,7 @@ export default function Signup() {
     return (
         <div className="container">
             <h1 className="title"> Register</h1>
-            <div class="card">
+            <div className="card">
                 <form onSubmit={submitHandle}>
                     <input
                         type="text"
@@ -76,8 +76,9 @@ export default function Signup() {
                         name="password"
                         onChange={handleInputChange}
                         value={formData.password}
+                        autoComplete="on"
                     />
-                    <div class="buttons">
+                    <div className="buttons">
                         <Link to={"/login"} className="link">
                             Login
                         </Link>

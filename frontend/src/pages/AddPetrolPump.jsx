@@ -1,18 +1,23 @@
 // AddPetrolPump.jsx
+
 import React, {useState} from 'react';
 import {toast} from "react-hot-toast";
 import {Link, useNavigate} from "react-router-dom";
 
-
+// AddPetrolPump component for adding a new petrol pump to the system
 const AddPetrolPump = () => {
+    // Use the useNavigate hook to navigate between routes
     const navigate = useNavigate();
+
+    // Initialize state for the petrol pump form data
     const [formData, setFormData] = useState({
         pd: '',
         name: '',
         location: '',
         charger: {
             available: false,
-            speed: {percent: 0, time: 0},
+            percent: 0,
+            time: 0,
             slots: 0,
             queue: 0,
         },
@@ -25,9 +30,11 @@ const AddPetrolPump = () => {
         },
     });
 
-
+    // Handle input changes for the form elements
     const handleChange = e => {
         const {name, value} = e.target;
+
+        // Update state based on the input name and value
         if (name.includes('charger')) {
             const [parentName, childName] = name.split('.');
             setFormData(prevState => ({
@@ -54,30 +61,40 @@ const AddPetrolPump = () => {
         }
     };
 
+    // Handle form submission
     const handleSubmit = async e => {
         e.preventDefault();
+
         try {
-            const response = await fetch('http://localhost:5000/PetrolPumps', {
+            // Send a POST request to the server with the form data
+            const response = await fetch('http://localhost:5000/AddPetrolPump', {
                 method: 'POST',
                 body: JSON.stringify(formData),
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
+
+            // Handle the server response
             const result = await response.json();
             console.warn(result);
-            if (result.error) {
-                toast.error(result.error);
 
+            if (result.error) {
+                // Display an error toast if the server returns an error
+                toast.error(result.error);
             } else {
+                // Display a success toast if the petrol pump is added successfully
                 toast.success("Added Successfully!");
+
+                // Reset the form data
                 setFormData({
                     pd: '',
                     name: '',
                     location: '',
                     charger: {
                         available: false,
-                        speed: {percent: 0, time: 0},
+                        percent: 0,
+                        time: 0,
                         slots: 0,
                         queue: 0,
                     },
@@ -88,15 +105,19 @@ const AddPetrolPump = () => {
                         capacity: 0,
                         queue: 0,
                     }
-                })
+                });
+
+                // Navigate back to the AddPetrolPump route
                 navigate("/AddPetrolPump");
             }
         } catch (error) {
+            // Display an error alert if there's an error adding the petrol pump
             console.error('Error adding petrol pump:', error);
-            alert('Error adding petrol pump');
+            alert('Error adding petrol pump', error);
         }
     };
 
+    // Return the JSX for the AddPetrolPump component
     return (
         <div className="container">
             <h1 className="title">Add Petrol Pump</h1>
@@ -125,11 +146,11 @@ const AddPetrolPump = () => {
                         <>
                             <div className="form-group">
                                 <label>Charger Speed (Percent):</label>
-                                <input type="number" name="charger.speedPercent" value={formData.charger.speedPercent} onChange={handleChange} />
+                                <input type="number" name="charger.percent" value={formData.charger.percent} onChange={handleChange} />
                             </div>
                             <div className="form-group">
                                 <label>Charger Speed (Time in minutes):</label>
-                                <input type="number" name="charger.speedTime" value={formData.charger.speedTime} onChange={handleChange} />
+                                <input type="number" name="charger.time" value={formData.charger.time} onChange={handleChange} />
                             </div>
                             <div className="form-group">
                                 <label>Charger Slots:</label>

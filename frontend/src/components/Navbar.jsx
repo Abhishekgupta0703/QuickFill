@@ -4,10 +4,10 @@ import "./navbar.css";
 
 export default function Navbar() {
     const navigate = useNavigate();
-    const auth = localStorage.getItem("user");
+    const auth = localStorage.getItem("token");
     const logout = (e) => {
         e.preventDefault();
-        localStorage.removeItem("user");
+        localStorage.removeItem("token");
         navigate("/login");
     };
 
@@ -27,6 +27,11 @@ export default function Navbar() {
                         <li className="list-item">
                             <Link to="/PetrolPump" className="nav-link">
                                 <h4>Book Slot</h4>
+                            </Link>
+                        </li>
+                        <li className="list-item">
+                            <Link to="/Profile" className="nav-link" >
+                                <h4>Profile</h4>
                             </Link>
                         </li>
                         <li className="list-item">

@@ -9,7 +9,7 @@ export default function Home() {
             <Hero />
             <Services />
             <Partners />
-            <style jsx >
+            <style jsx ='true'>
                 {
                     `.home{
                     }`

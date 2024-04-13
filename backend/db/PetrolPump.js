@@ -18,19 +18,23 @@ const pumpSchema = new mongoose.Schema({
             type: Boolean,
             default: true,
         },
-        speed: {
-            percent: {
-                type: Number,
-            },
-            time: {
-                type: Number // in minutes
-            }
+
+        percent: {
+            type: Number,
+            default: 0, // in percentage (e.g., 85)
         },
+        time: {
+            type: Number, // in minutes
+            default: 0
+        },
+
         slots: {
             type: Number,
+            default: 0
         },
         queue: {
             type: Number,
+            default: 0
         },
     },
     cng: {

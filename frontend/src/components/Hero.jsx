@@ -11,7 +11,7 @@ function Hero() {
                     gas stations and book your slot in advance. Whether you have a CNG
                     vehicle or an EV, we've got you covered!
                 </p>
-                <div class="left-btns">
+                <div className="left-btns">
                     <Link to='/Book' className="btn">Book Your Slot</Link>
                 </div>
             </div>

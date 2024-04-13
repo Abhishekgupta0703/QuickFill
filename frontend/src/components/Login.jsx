@@ -11,7 +11,7 @@ export default function Login() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const auth = localStorage.getItem("user");
+        const auth = localStorage.getItem("token");
         if (auth) {
             navigate("/");
         }
@@ -32,7 +32,8 @@ export default function Login() {
                 body: JSON.stringify(formData),
                 headers: {
                     "Content-Type": "application/json"
-                }
+                },
+                credentials:"include"
             });
 
             const result = await response.json();
@@ -41,7 +42,7 @@ export default function Login() {
             if (result.error) {
                 toast.error(result.error);
             } else {
-                localStorage.setItem("user", JSON.stringify(result));
+                localStorage.setItem("token", JSON.stringify(result));
                 toast.success("Logged In Successfully!");
                 navigate("/");
             }
@@ -53,7 +54,7 @@ export default function Login() {
     return (
         <div className="container">
             <h1 className="title"> Login</h1>
-            <div class="card">
+            <div className="card">
                 <form onSubmit={submitHandle}>
                     <input
                         type="text"
@@ -68,8 +69,9 @@ export default function Login() {
                         name="password"
                         onChange={handleInputChange}
                         value={formData.password}
+                        autoComplete="off"
                     />
-                    <div class="buttons">
+                    <div className="buttons">
                         <Link to={"/signup"} className="link">
                             Register
                         </Link>
