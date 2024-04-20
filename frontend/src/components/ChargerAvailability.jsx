@@ -72,7 +72,7 @@ const ChargerAvailability = ({charger, userId, pumpId, }) => {
             toast.error('Please fill all fields');
             return;
         }
-
+ 
         try {
             const bookingData = {
                 userId: userId,
@@ -93,6 +93,67 @@ const ChargerAvailability = ({charger, userId, pumpId, }) => {
         } catch (error) {
             toast.error('Error booking slot');
         }
+    };
+
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+        script.async = true;
+        document.body.appendChild(script);
+
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
+
+
+    const openRazorpay = async () => {
+
+        const userData = {
+            userId: userId
+        }
+        const order = await axios.post('http://localhost:5000/create-order', userData);
+        console.log(order);
+        if (!order.data.success) {
+            alert("Order failed!");
+            return;
+        }
+        const options = {
+            key: order.data.data.razorpayKeyId,
+            amount: '50000',
+            currency: 'INR',
+            name: 'Acme Corp',
+            description: 'Test Transaction',
+            image: 'https://example.com/your_logo',
+            order_id: order.data.data.id,
+            handler:async function (response) {
+                const userData = {
+                    razorpay_payment_id :response.razorpay_payment_id, 
+                    razorpay_order_id:response.razorpay_order_id, 
+                    razorpay_signature:response.razorpay_signature 
+                }
+                const orderResult = await axios.post('http://localhost:5000/verify-order', userData);
+                if(orderResult.data.success){
+                    handleBooking();
+                }
+            },
+            prefill: {
+                name: 'Gaurav Kumar',
+                email: 'gaurav.kumar@example.com',
+                contact: '9000090000',
+            },
+            notes: {
+                address: 'Razorpay Corporate Office',
+            },
+            theme: {
+                color: '#3399cc',
+            },
+        };
+        const rzp1 = new window.Razorpay(options);
+        rzp1.on('payment.failed', function (response) {
+            toast.error('Payment Failed');
+        });
+        rzp1.open();
     };
 
     return (
@@ -124,7 +185,7 @@ const ChargerAvailability = ({charger, userId, pumpId, }) => {
                         value={selectedSlot}
                         placeholder="Select Time Slot"
                     />
-                    <button className="btn" type="button" onClick={handleBooking}>Book</button>
+                    <button className="btn" type="button" onClick={()=>openRazorpay()}>Book</button>
                 </form>
                 <button onClick={closeModal} className="btn red">Close</button>
             </Modal>
