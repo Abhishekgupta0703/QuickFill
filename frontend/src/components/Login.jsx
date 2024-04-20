@@ -44,7 +44,7 @@ export default function Login() {
             } else {
                 localStorage.setItem("token", JSON.stringify(result));
                 toast.success("Logged In Successfully!");
-                navigate("/");
+                navigate("/PetrolPump");
             }
         } catch (error) {
             console.error(error);
