@@ -36,6 +36,7 @@ app.use(session({
 app.use('/', require('./routes/authRoutes'));
 app.use('/', require('./routes/pumpRoutes'));
 app.use('/', require('./routes/bookingRoutes'));
+app.use('/', require('./routes/adminRoutes'));
 // Start the server
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
