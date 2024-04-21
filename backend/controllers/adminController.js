@@ -5,11 +5,11 @@ const jwt = require('jsonwebtoken');
 
 const loginPump = async (req, res) => {
     try {
-        const {pd, password} = req.body;
+        const {email, password} = req.body;
 
         // Check if email is entered
-        if (!pd) {
-            return res.json({error: 'PumpId is required'});
+        if (!email) {
+            return res.json({error: 'Email is required'});
         }
 
         // Check if password is good
@@ -18,7 +18,7 @@ const loginPump = async (req, res) => {
         }
 
         // Check if user exists
-        const pump = await Pump.findOne({pd});
+        const pump = await Pump.findOne({email});
         if (!pump) {
             return res.json({error: 'No pump found'});
         }
@@ -26,8 +26,9 @@ const loginPump = async (req, res) => {
         if (password !== pump.password) {
             return res.json({ error: "Password doesn't match" });
         }
+        // const match = await comparePassword(password, pump.password);
 
-        jwt.sign({ pumpName: pump.name, id: pump._id }, `${process.env.JWT_SECRET}`, {}, (err, token) => {
+        jwt.sign({ pumpName: pump.name, email:pump.email, id: pump._id }, `${process.env.JWT_SECRET}`, {}, (err, token) => {
             if (err) throw err;
             res.cookie('pumpToken', token).json(pump);
         });

@@ -8,9 +8,12 @@ const test = (req, res) => {
 
 const addPump = async (req, res) => {
   try {
-    const { pd, name, location, charger, cng } = req.body;
+    const { pd, email,name, location, charger, cng } = req.body;
     if (!pd || pd.length != 6) {
       return res.status(400).send({ error: "6 Alphanumeric ID is Required." });
+    }
+    if (!email) {
+      return res.status(400).send({ error: "Email is required." });
     }
     if (!name) {
       return res.status(400).send({ error: "Station Name is required." });
@@ -24,6 +27,7 @@ const addPump = async (req, res) => {
     }
     const newPump = await Pump.create({
       pd,
+      email,
       name,
       location,
       charger,

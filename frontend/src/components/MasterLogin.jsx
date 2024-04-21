@@ -1,12 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import {useNavigate} from 'react-router-dom'; // Import useNavigate for navigation
+import React, {useEffect, useState} from "react"
+import {useNavigate} from 'react-router-dom';
 import {toast} from "react-hot-toast";
 import axios from 'axios';
 
-const PetrolPumpLogin = () => {
+const MasterLogin = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate(); // Initialize useNavigate for navigation
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const auth1 = localStorage.getItem("token");
@@ -25,51 +26,54 @@ const PetrolPumpLogin = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        if (!email ||!password) {
+            toast.error("Please enter email and password");
+        }
+        if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+            toast.error("Please enter a valid email address");
+        }
         try {
-            const response = await axios.post('http://localhost:5000/PumpLogin', {
+            const response = await axios.post('http://localhost:5000/masterLogin', {
                 email,
                 password
             });
             const result = await response.data;
             console.log(result);
-
             if (result.error) {
                 toast.error(result.error);
             } else {
-                localStorage.setItem("pumpToken", JSON.stringify(result));
-                toast.success("Logged In Successfully!");
-                navigate('/PumpDashboard');
+                localStorage.setItem("master", JSON.stringify(result));
+                toast.success("Logged In Successfully");
+                navigate("/AddPetrolPump");
             }
         } catch (error) {
             console.error('Error logging in:', error.message);
-            // Display error message to the user
         }
-    };
+    }
 
     return (
         <div className="container">
-            <h2 className='title'> Petrol Pump Login</h2>
-            <div className="card">
+            <h2 className="title"> Master Login</h2>
+           <div className="card">
             <form onSubmit={handleLogin}>
                 <input
                     type="text"
-                    placeholder="Enter Pump Email"
+                    placeholder="Enter Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                 />
                 <input
                     type="password"
-                    placeholder="Password"
+                    placeholder="Enter Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-                <button type="submit" className='submit-button'>Login</button>
-                </form>
-                </div>
+                <button type="submit" disabled={loading} className="submit-button">Login</button>
+            </form></div>
         </div>
-    );
-};
+    )
+}
 
-export default PetrolPumpLogin;
+export default MasterLogin;

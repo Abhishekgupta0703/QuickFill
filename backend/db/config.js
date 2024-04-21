@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 mongoose
   .connect(
-    "mongodb+srv://Rayaanracer:Gt101200@cluster0.d6yiowa.mongodb.net/doctorapp"
+    process.env.MONGO_URL
   )
   .then(() => {
     console.log("MongoDB Connected");

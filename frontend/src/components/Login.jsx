@@ -11,9 +11,17 @@ export default function Login() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const auth = localStorage.getItem("token");
-        if (auth) {
+        const auth1 = localStorage.getItem("token");
+        const auth2 = localStorage.getItem("master");
+        const auth3=localStorage.getItem("pumpToken");
+        if (auth1) {
             navigate("/");
+        }
+        if (auth2) {
+            navigate("/AddPetrolPump");
+        }
+        if (auth3) {
+            navigate("/PumpDashboard");
         }
     }, [navigate]);
 
@@ -37,7 +45,7 @@ export default function Login() {
             });
 
             const result = await response.json();
-            console.warn(result);
+            console.log(result);
 
             if (result.error) {
                 toast.error(result.error);

@@ -24,7 +24,8 @@ body {
 
 .card {
   width: 300px;
-  background-color: #1e213a;
+  /* background-color: #1e213a; */
+  background-color: #f9f9f9;
   padding: 20px;
   border-radius: 10px;
   border-top: 4px solid #19d4ca;
@@ -42,7 +43,7 @@ input {
   border: none;
   background-color: transparent;
   border-bottom: 1px solid #ccc;
-  color: #fff;
+  color: #000552;
   transition: box-shadow 0.3s;
 }
 
@@ -86,13 +87,13 @@ input:focus {
 
 .link {
   font-size: 1rem;
-  color: #ccc;
+  color: #141414;
   background-color: transparent;
-  box-shadow: 0 0 1px #ccccccbd;
+  box-shadow: 0 0 2px #000000;
 }
 
 .link:hover {
-  color: #fff;
+  color: #191919;
   box-shadow: 0 0 10px #ccc;
 }
 

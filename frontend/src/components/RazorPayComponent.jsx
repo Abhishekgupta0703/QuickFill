@@ -24,7 +24,7 @@ const RazorPayComponent = () => {
             "order_id": "order_Nz0y7TyPfcBXBg", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
             "callback_url": "http://localhost:5000/verify-order",
             "prefill": {
-                "name": "Gaurav Kumar",
+                "name": "Quick Fill",
                 "email": "gaurav.kumar@example.com",
                 "contact": "9000090000"
             },

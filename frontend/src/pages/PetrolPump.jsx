@@ -159,9 +159,9 @@ const userId = userInfo._id;
                     <Link to="/Booking" className="bth">
                         Back to Home
                     </Link>
-                    <button id="rzp-button1" onClick={openRazorpay}>
+                    {/* <button id="rzp-button1" onClick={openRazorpay}>
                         Pay with Razorpay
-                    </button>
+                    </button> */}
                 </div>
             )}
             <style jsx="true">

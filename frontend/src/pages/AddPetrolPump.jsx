@@ -13,6 +13,7 @@ const AddPetrolPump = () => {
     const [formData, setFormData] = useState({
         pd: '',
         name: '',
+        email: '',
         location: '',
         charger: {
             available: false,
@@ -77,7 +78,7 @@ const AddPetrolPump = () => {
 
             // Handle the server response
             const result = await response.json();
-            console.warn(result);
+            console.log(result);
 
             if (result.error) {
                 // Display an error toast if the server returns an error
@@ -90,6 +91,7 @@ const AddPetrolPump = () => {
                 setFormData({
                     pd: '',
                     name: '',
+                    email:'',
                     location: '',
                     charger: {
                         available: false,
@@ -126,6 +128,10 @@ const AddPetrolPump = () => {
                     <div className="form-group">
                         <label>ID:</label>
                         <input type="text" name="pd" value={formData.pd} onChange={handleChange} />
+                    </div>
+                    <div className="form-group">
+                        <label>Email:</label>
+                        <input type="text" name="email" value={formData.email} onChange={handleChange} />
                     </div>
                     <div className="form-group">
                         <label>Name:</label>
@@ -200,7 +206,7 @@ const AddPetrolPump = () => {
                 }
                 label {
                     display: block;
-                    color:white;
+                    color:black;
                     margin-bottom: 5px;
                 }
                 input{

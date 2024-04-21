@@ -8,7 +8,7 @@ const test = (req, res) => {
     res.json("Test is working");
 };
 
-// Register user endpoint
+// Register user endpoint 
 const registerUser = async (req, res) => {
     try {
         const {name, email, password} = req.body;
@@ -74,6 +74,7 @@ const loginUser = async (req, res) => {
                 if (err) throw err;
                 res.cookie('token', token).json(user);
             });
+            return res.json(user);
         }
 
         if (!match) {

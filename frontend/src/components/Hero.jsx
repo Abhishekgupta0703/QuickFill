@@ -12,7 +12,7 @@ function Hero() {
                     vehicle or an EV, we've got you covered!
                 </p>
                 <div className="left-btns">
-                    <Link to='/Book' className="btn">Book Your Slot</Link>
+                    <Link to='/PetrolPump' className="btn">Book Your Slot</Link>
                 </div>
             </div>
             <div className="right">
