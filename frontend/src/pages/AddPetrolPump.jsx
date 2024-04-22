@@ -14,20 +14,21 @@ const AddPetrolPump = () => {
         pd: '',
         name: '',
         email: '',
+        password: '',
         location: '',
         charger: {
             available: false,
-            percent: 0,
-            time: 0,
-            slots: 0,
-            queue: 0,
+            percent: '',
+            time: '',
+            slots: '',
+            queue: '',
         },
         cng: {
             available: false,
-            nozzles: 0,
-            fillingRate: 0,
-            capacity: 0,
-            queue: 0,
+            nozzles: '',
+            fillingRate: '',
+            capacity: '',
+            queue: '',
         },
     });
 
@@ -91,21 +92,22 @@ const AddPetrolPump = () => {
                 setFormData({
                     pd: '',
                     name: '',
-                    email:'',
+                    email: '',
+                    password: '',
                     location: '',
                     charger: {
                         available: false,
-                        percent: 0,
-                        time: 0,
-                        slots: 0,
-                        queue: 0,
+                        percent: '',
+                        time: '',
+                        slots: '',
+                        queue: '',
                     },
                     cng: {
                         available: false,
-                        nozzles: 0,
-                        fillingRate: 0,
-                        capacity: 0,
-                        queue: 0,
+                        nozzles: '',
+                        fillingRate: '',
+                        capacity: '',
+                        queue: '',
                     }
                 });
 
@@ -126,72 +128,61 @@ const AddPetrolPump = () => {
             <div className="card">
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label>ID:</label>
-                        <input type="text" name="pd" value={formData.pd} onChange={handleChange} />
+                        <input type="text" name="pd" value={formData.pd} placeholder='Station ID' onChange={handleChange} />
                     </div>
                     <div className="form-group">
-                        <label>Email:</label>
-                        <input type="text" name="email" value={formData.email} onChange={handleChange} />
+                        <input type="text" name="email" value={formData.email} placeholder='Station Email' onChange={handleChange} />
                     </div>
                     <div className="form-group">
-                        <label>Name:</label>
-                        <input type="text" name="name" value={formData.name} onChange={handleChange} />
+                        <input type="text" name="password" value={formData.password} placeholder='Password' onChange={handleChange} />
                     </div>
                     <div className="form-group">
-                        <label>Location:</label>
-                        <input type="text" name="location" value={formData.location} onChange={handleChange} />
+                        <input type="text" name="name" value={formData.name} placeholder='Station Name' onChange={handleChange} />
                     </div>
                     <div className="form-group">
-                        <label>Charger Availability:</label>
+                        <input type="text" name="location" value={formData.location} placeholder='Location' onChange={handleChange} />
+                    </div>
+                    <div className="form-group">
                         <select name="charger.available" value={formData.charger.available} onChange={handleChange}>
-                            <option value={true}>Available</option>
-                            <option value={false}>Not Available</option>
+                            <option value={true}>Charger Available</option>
+                            <option value={false}>Charger Not Available</option>
                         </select>
                     </div>
                     {formData.charger.available && (
                         <>
                             <div className="form-group">
-                                <label>Charger Speed (Percent):</label>
-                                <input type="number" name="charger.percent" value={formData.charger.percent} onChange={handleChange} />
+                                <input type="number" name="charger.percent"  placeholder='Charging Speed in %' value={formData.charger.percent} onChange={handleChange} />
                             </div>
                             <div className="form-group">
-                                <label>Charger Speed (Time in minutes):</label>
-                                <input type="number" name="charger.time" value={formData.charger.time} onChange={handleChange} />
+                                <input type="number" name="charger.time" placeholder='Charging Time in Minutes' value={formData.charger.time} onChange={handleChange} />
                             </div>
                             <div className="form-group">
-                                <label>Charger Slots:</label>
-                                <input type="number" name="charger.slots" value={formData.charger.slots} onChange={handleChange} />
+                                <input type="number" name="charger.slots" placeholder='Total Chrging Ports' value={formData.charger.slots} onChange={handleChange} />
                             </div>
                             <div className="form-group">
-                                <label>Charger Queue:</label>
-                                <input type="number" name="charger.queue" value={formData.charger.queue} onChange={handleChange} />
+                                <input type="number" name="charger.queue" placeholder='Current Queue' value={formData.charger.queue}  onChange={handleChange} />
                             </div>
                         </>
                     )}
                     <div className="form-group">
-                        <label>CNG Availability:</label>
                         <select name="cng.available" value={formData.cng.available} onChange={handleChange}>
-                            <option value={true}>Available</option>
-                            <option value={false}>Not Available</option>
+                            <option value={true}>CNG Available</option>
+                            <option value={false}>CNG Not Available</option>
                         </select>
                     </div>
                     {formData.cng.available && (
                         <>
                             <div className="form-group">
-                                <label>CNG Nozzles:</label>
-                                <input type="number" name="cng.nozzles" value={formData.cng.nozzles} onChange={handleChange} />
+                                <input type="number" name="cng.nozzles"placeholder='Total CNG Nozzles' value={formData.cng.nozzles} onChange={handleChange} />
                             </div>
                             <div className="form-group">
-                                <label>CNG Filling Rate:</label>
-                                <input type="number" name="cng.fillingRate" value={formData.cng.fillingRate} onChange={handleChange} />
+                                <input type="number" name="cng.fillingRate"placeholder='LTR CNG in 1 Min ' value={formData.cng.fillingRate} onChange={handleChange} />
                             </div>
                             <div className="form-group">
-                                <label>CNG Capacity:</label>
-                                <input type="number" name="cng.capacity" value={formData.cng.capacity} onChange={handleChange} />
+                                <input type="number" name="cng.capacity" placeholder='Current Pressure' value={formData.cng.capacity}  onChange={handleChange} />
                             </div>
                             <div className="form-group">
-                                <label>CNG Queue:</label>
-                                <input type="number" name="cng.queue" value={formData.cng.queue} onChange={handleChange} />
+                                <input type="number" name="cng.queue" placeholder='Current Queue'value={formData.cng.queue} onChange={handleChange} />
                             </div>
                         </>
                     )}

@@ -6,25 +6,26 @@
   width: 100%;
   color: var(--text);
   display: flex;
-  height: 60px;
+  height:80px;
   align-items: center;
   align-items: center;
-  background: #0163cb;
+  background: #3f72af;
   z-index: 1;
 }
 
 .nav-logo {
+  font-size: 30px;
   margin-left: 2rem;
 }
 .nav-list {
   display: flex;
   list-style-type: none;
   margin-inline: auto 2rem;
-  /* gap: 2rem; */
   position: relative;
   align-items: center;
 }
 .nav-link {
+  font-size: 20px;
   line-height: 1;
   text-decoration: none;
   color: var(--text);

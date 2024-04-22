@@ -25,6 +25,16 @@ export default function Navbar() {
                         <h4>Home</h4>
                     </Link>
                 </li>
+                <li className="list-item">
+                    <Link to="/" className="nav-link">
+                        <h4>Services</h4>
+                    </Link>
+                </li>
+                <li className="list-item">
+                    <Link to="/" className="nav-link">
+                        <h4>Our Team</h4>
+                    </Link>
+                </li>
 
                 {auth1 ? (
                     <>
@@ -68,11 +78,7 @@ export default function Navbar() {
                     </li>
                         
                             </>) : (
-                                <><li className="list-item">
-                                <Link to="/signup" className="nav-link">
-                                    <h4>Signup</h4>
-                                </Link>
-                            </li>
+                                <>
                             <li className="list-item">
                                 <Link to="/login" className="nav-link">
                                     <h4>Login</h4>

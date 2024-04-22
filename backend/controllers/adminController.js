@@ -26,24 +26,14 @@ const loginPump = async (req, res) => {
         if (password !== pump.password) {
             return res.json({ error: "Password doesn't match" });
         }
-        // const match = await comparePassword(password, pump.password);
-
-        jwt.sign({ pumpName: pump.name, email:pump.email, id: pump._id }, `${process.env.JWT_SECRET}`, {}, (err, token) => {
-            if (err) throw err;
-            res.cookie('pumpToken', token).json(pump);
-        });
-        // // Check if password matches
-        // const match = await comparePassword(password, pump.password);
-        // if (match) {
-        //     jwt.sign({email: user.email, id: user._id, name: user.name}, `${process.env.JWT_SECRET}`, {}, (err, token) => {
-        //         if (err) throw err;
-        //         res.cookie('token', token).json(user);
-        //     });
-        // }
-
-        // if (!match) {
-        //     return res.json({error: "Password doesn't match"});
-        // }
+        const match = await comparePassword(password, pump.password);
+        if (match) {
+            jwt.sign({pumpName: pump.name, email: pump.email, id: pump._id}, `${process.env.JWT_SECRET}`, {}, (err, token) => {
+                if (err) throw err;
+                res.cookie('pumpToken', token).json(pump);
+            });
+        }
+        
     } catch (error) {
         console.log(error);
     }

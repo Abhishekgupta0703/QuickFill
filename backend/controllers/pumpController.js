@@ -1,6 +1,6 @@
 // pumpController.js
 const Pump = require("../db/PetrolPump");
-
+const {hashPassword, comparePassword} = require('../helpers/auth');
 const test = (req, res) => {
   res.json("this is also working");
   console.log("Good Test");
@@ -8,35 +8,42 @@ const test = (req, res) => {
 
 const addPump = async (req, res) => {
   try {
-    const { pd, email,name, location, charger, cng } = req.body;
+    const {pd, email, password, name, location, charger, cng} = req.body;
     if (!pd || pd.length != 6) {
-      return res.status(400).send({ error: "6 Alphanumeric ID is Required." });
+      return res.status(400).send({error: "6 Alphanumeric ID is Required."});
     }
     if (!email) {
-      return res.status(400).send({ error: "Email is required." });
+      return res.status(400).send({error: "Email is required."});
+    }
+    if (!password || password.length <= 8) {
+      return res.status(400).send({error: "Password must be at least 8 characters long"});
+
     }
     if (!name) {
-      return res.status(400).send({ error: "Station Name is required." });
+      return res.status(400).send({error: "Station Name is required."});
     }
     if (!location) {
-      return res.status(400).send({ error: "Location is required." });
+      return res.status(400).send({error: "Location is required."});
     }
-    const exist = await Pump.findOne({ pd });
+    const exist = await Pump.findOne({pd});
     if (exist) {
-      return res.status(409).send({ error: "This Station already exists." });
+      return res.status(409).send({error: "This Station already exists."});
     }
+    const hashedPassword = await hashPassword(password);
+
     const newPump = await Pump.create({
       pd,
       email,
+      hashedPassword,
       name,
       location,
       charger,
       cng
     });
-    return res.status(201).send({ message: newPump });
+    return res.status(201).send({message: newPump});
   } catch (error) {
     console.log("Error in adding pump : ", error);
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({message: "Server error"});
   }
 };
 // Get all the petrol pumps from the database
@@ -46,7 +53,7 @@ const listPump = async (req, res) => {
     res.json(petrolPumps);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({message: "Server error"});
   }
 };
 
@@ -56,13 +63,13 @@ const searchForAPump = async (req, res) => {
   try {
     const petrolPump = await Pump.findById(id);
     if (!petrolPump) {
-      return res.status(404).json({ message: "Petrol pump not found" });
+      return res.status(404).json({message: "Petrol pump not found"});
     }
     res.json(petrolPump);
     console.log(petrolPump);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: `Server error ${err}` });
+    res.status(500).json({message: `Server error ${err}`});
   }
 };
 module.exports = {

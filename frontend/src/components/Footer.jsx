@@ -12,15 +12,16 @@ function Footer() {
                     <h2>Quick Fill</h2>
                     <p>Your one stop solution to all your gas refueling problems.</p>
                     <p>Book your slot now!</p>
+                    <p className="p-2">Head Office : Lucknow, Uttar Pradesh</p>
                 </div>
                 <div className="f12">
                     <h2>Helpful Links</h2>
                     <div className="links">
-                        <Link to="/"><LuChevronsRight className="icons" /> Home</Link>
-                        <Link to="/Book"><LuChevronsRight className="icons" /> Book Slot</Link>
-                        <Link to="/CNG"><LuChevronsRight className="icons" /> CNG</Link>
-                        <Link to="/EV"><LuChevronsRight className="icons" /> EV Charging</Link>
-                        <Link to="/policies"><LuChevronsRight className="icons" /> Policies</Link>
+                        <Link to="/">Home</Link>
+                        <Link to="/Book">Book Slot</Link>
+                        <Link to="/CNG">CNG</Link>
+                        <Link to="/EV">EV Charging</Link>
+                        <Link to="/PetrolPumpLogin">Pump Login</Link>
                     </div>
                 </div>
                 <div className="f13">
@@ -29,28 +30,43 @@ function Footer() {
                     <p>Support team: 10am - 6pm</p>
                 </div>
                 <div className="f14">
-                    <h2>Developed By:</h2>
+                    <h2>Our Team</h2>
                     <div className="links">
-                        <Link to="" className="linkedin">  <LuLinkedin className="li-icons" /> Abhishek Gupta </Link>
-                        <Link to="" className="linkedin">  <LuLinkedin className="li-icons" /> Alok Singh </Link>
-                        <Link to="" className="linkedin">  <LuLinkedin className="li-icons" /> Pranjal Bajpai </Link>
-                        <Link to="" className="linkedin">  <LuLinkedin className="li-icons" /> Shweta Yadav </Link>
+                        <Link to="" className="linkedin">Abhishek Gupta </Link>
+                        <Link to="" className="linkedin">Alok Singh </Link>
+                        <Link to="" className="linkedin">Pranjal Bajpai </Link>
+                        <Link to="" className="linkedin">Shweta Yadav </Link>
                     </div>
                 </div>
             </div>
-            <div className="f2">All Rights Reserved © 2024</div>
+            <div className="f2">All Rights Reserved © 2024 | Quick Fill</div>
             <style jsx="true">
                 {`
           .footer {
-            width: 100%;
-            background: #0069d9;
+            width: 100%; 
+            background:url(https://e-amrit.niti.gov.in/assets/admin/dist/img/new-fronend-img/bg-footer.png);
+            background-color: #112d4e;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            h2{
+                font-size:30px;
+                margin:10px 0;
+            }
             .f1 {
               display: flex;
               justify-content: center;
               gap:10px;
               .f11{
                 width:30%;
-                margin:10px auto 20px
+                margin:10px auto 20px;
+                p{
+                    margin:0;
+                }
+                .p-2{
+                    margin-top:20px;
+                }
               }
               .f12, .f13, .f14{
                 width:20%;
@@ -69,17 +85,14 @@ function Footer() {
                     padding:1px 0 0;
                 }
                 .linkedin{
-                    color:orangered;
-                    background:white;
+                    color:white;
+                    // background:white;
                     width:fit-content;
                     padding: 3px 5px;
                     border: none;
                     border-radius: 5px;
                 }
-                .li-icons{
-                    padding:0 5px;
-                    color:orangered;
-                }
+                
               }
             }
             .f2 {

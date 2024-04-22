@@ -1,5 +1,5 @@
 import React from "react";
-import heroImg from '../assets/petrol-pump.png'
+import heroImg from '../assets/Quickfill Hero.png'
 import {Link} from "react-router-dom";
 function Hero() {
     return (
@@ -25,16 +25,24 @@ function Hero() {
           flex-direction: row;
           justify-content: center;
           align-item: center;
-          gap:80px;
-          background: #f4f6f9;
+          background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC") repeat 0 0;
+            -webkit-animation: bg-scrolling-reverse 0.92s infinite;
+            -moz-animation: bg-scrolling-reverse 0.92s infinite;            
+            -o-animation: bg-scrolling-reverse 0.92s infinite;            
+            animation: bg-scrolling-reverse 0.92s infinite;           
+            -webkit-animation-timing-function: linear;
+            -moz-animation-timing-function: linear;
+            -o-animation-timing-function: linear;
+            animation-timing-function: linear;
         }
         .left {
-          max-width: 40%;
-          gap:50px;
+          flex:0 0 35%;
+          gap:40px;
           h1 {
+            margin:20px auto;
             font-weight: 900;
             font-size: 70px;
-            color: #0069d9;
+            color: #3f72af;
           }
           p {
             font-size: 22px;
@@ -62,7 +70,7 @@ function Hero() {
           }
           
         }.right{
-            max-width:40%;
+           flex:0 0 58%;
             img{
                 width:100%;
           }

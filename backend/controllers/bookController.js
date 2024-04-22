@@ -2,7 +2,7 @@ const { EVBooking, CNGBooking, Payment } = require("../db/Booking");
 const { razorpay } = require("../config/razorpayConfig");
 const crypto = require("crypto");
 const evBooking = async (req, res) => {
-  console.log("reached");
+  // console.log("reached");
   try {
     const { userId, pumpId, vehicleNo, timeSlot } = req.body;
     const evBooking = new EVBooking({ userId, pumpId, vehicleNo, timeSlot });

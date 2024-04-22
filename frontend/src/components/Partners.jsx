@@ -50,14 +50,24 @@ function Partners() {
             <style jsx="true">
                 {`
           .partners {
-            height: 50vh;
-            background: white;
+           
+            background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC") repeat 0 0;
+            -webkit-animation: bg-scrolling-reverse 0.92s infinite;
+            -moz-animation: bg-scrolling-reverse 0.92s infinite;            
+            -o-animation: bg-scrolling-reverse 0.92s infinite;            
+            animation: bg-scrolling-reverse 0.92s infinite;           
+            -webkit-animation-timing-function: linear;
+            -moz-animation-timing-function: linear;
+            -o-animation-timing-function: linear;
+            animation-timing-function: linear;
+
+            height: 60vh;
             padding:1px 0 60px;
             text-align:center;
             h1 {
               font-size: 45px;
               font-weight: 800;
-              color: orangered;
+              color: #112d4e;
               margin:50px auto;
             }
           }
@@ -93,6 +103,8 @@ function Partners() {
               transform: translate(-100%);
             }
           }
+
+          
         `}
             </style>
         </div>

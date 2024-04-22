@@ -1,12 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&family=Ubuntu+Condensed&family=Ubuntu:wght@500&display=swap");
 :root {
   --navbar-height: 50px;
 }
 body {
   margin: 0;
   padding: 0;
-  background-color: #ededed;
   color: #222;
-  font-family: Arial, sans-serif;
+  font-family: "Baloo Bhai 2", sans-serif;
+  
+  
 }
 .container {
   display: flex;
@@ -24,7 +26,6 @@ body {
 
 .card {
   width: 300px;
-  /* background-color: #1e213a; */
   background-color: #f9f9f9;
   padding: 20px;
   border-radius: 10px;
@@ -105,5 +106,76 @@ input:focus {
   .card {
     width: 100%;
     max-width: 270px;
+  }
+}
+.services {
+  color: #112d4e;
+  background: url(https://e-amrit.niti.gov.in/assets/admin/dist/img/new-fronend-img/ourtoolsbg.jpg);
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: left;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.inner-services {
+  height: 470px;
+  background: #f9f7f7;
+  width: 70%;
+  border-radius: 16px;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px;
+  gap: 50px;
+  filter: drop-shadow(0 3px 96px rgba(0, 0, 0, 0.07));
+  box-shadow: 0 3px 96px rgba(0, 0, 0, 0.07);
+}
+.inner-2{
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+@-webkit-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-moz-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-o-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-webkit-keyframes bg-scrolling {
+  0% {
+    background-position: 50px 50px;
+  }
+}
+@-moz-keyframes bg-scrolling {
+  0% {
+    background-position: 50px 50px;
+  }
+}
+@-o-keyframes bg-scrolling {
+  0% {
+    background-position: 50px 50px;
+  }
+}
+@keyframes bg-scrolling {
+  0% {
+    background-position: 50px 50px;
   }
 }

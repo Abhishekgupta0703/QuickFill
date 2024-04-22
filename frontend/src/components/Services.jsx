@@ -1,71 +1,106 @@
 import React from "react";
-import pumpImage from '../assets/gas-pump.png'
 function Services() {
-    return (
-        <div className="container c2">
-            <h1>Our Services and Expertise</h1>
-            <div className="boxes">
-                <div className="box">
-                    <img src={pumpImage} alt="" />
-                    <p>Find nearby gas stations</p>
-                </div>
-                <div className="box">
-                    <img src={pumpImage} alt="" />
-                    <p>Book slot for your CNG vehicles</p>
-                </div>
-                <div className="box">
-                    <img src={pumpImage} alt="" />
-                    <p>Find EV charging stations</p>
-                </div>
-                <div className="box">
-                    <img src={pumpImage} alt="" />
-                    <p>Generate tokens for free</p>
-                </div>
+  return (
+    <div className="services">
+      <div className="inner-services">
+        <div className="inner-1">
+          <h1>Explore Our Services</h1>
+        </div>
+        <div className="inner-2">
+          <div className="service-card">
+            <div className="img">
+              <img
+                src="https://e-amrit.niti.gov.in/assets/admin/dist/img/new-fronend-img/tool2.png"
+                alt=""
+              />
             </div>
-            <style jsx="true">
-                {`
-          .c2 {
-            width: 100%;
-            display:block;
-            gap: 80px;
-            text-align:center;
-            background:#0069d9;
-            padding:1px 0;
-            height:auto;
-            h1{
-                margin:50px auto;
-                font-size: 45px;
-                font-weight: 800;
-                color: white;
+            <h2>Lorem, ipsum dolor.</h2>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id iure
+              impedit, beatae explicabo possimus nemo.
+            </p>
+          </div>
+          <div className="service-card">
+            <div className="img">
+              <img
+                src="https://e-amrit.niti.gov.in/assets/admin/dist/img/new-fronend-img/tool1.png"
+                alt=""
+              />
+            </div>
+            <h2>Lorem, ipsum dolor.</h2>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id iure
+              impedit, beatae explicabo possimus nemo.
+            </p>
+          </div>
+          <div className="service-card">
+            <div className="img">
+              <img
+                src="https://e-amrit.niti.gov.in/assets/admin/dist/img/new-fronend-img/public-charging-tool.png"
+                alt=""
+              />
+            </div>
+            <h2>Lorem, ipsum dolor.</h2>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id iure
+              impedit, beatae explicabo possimus nemo.
+            </p>
+          </div>
+        </div>
+      </div>
+      <style jsx="true">
+        {`
+          .services {
+            color: #112d4e;
+            background: url(https://e-amrit.niti.gov.in/assets/admin/dist/img/new-fronend-img/ourtoolsbg.jpg);
+            background-repeat: no-repeat;
+            background-size: 50%;
+            background-position: left;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            .inner-services {
+              height: 470px;
+              background: #f9f7f7;
+              width: 70%;
+              border-radius: 16px;
+              margin-right: 20px;
+              display: flex;
+              align-items: center;
+              flex-direction: column;
+              padding: 30px;
+              gap: 40px;
+              filter: drop-shadow(0 3px 96px rgba(0, 0, 0, 0.07));
+              box-shadow: 0 3px 96px rgba(0, 0, 0, 0.07);
+              h1,
+              h2,
+              p {
+                margin: 0;
+              }
             }
-            .boxes{
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-item: center;
-                gap:4%;
-                margin-bottom:70px;
-                .box{
-                    width:17%;
-                    background-color: white;
-                    transition: all 0.2s ease-in-out;
-                    border-radius: 15px;
-                    gap: 10px;
-                    padding: 15px;
-                    font-size: 18px;
-                    font-weight: 600;
-                    color:black;
-                    img{
-                        width:80%;
-                    }
-                }
+            .img {
+              width: 200px;
+              height: 200px;
+              margin-bottom: 40px;
+              img {
+                width: 120%;
+                height: 120%;
+                object-fit: contain;
+                aspect-ratio: 1;
+              }
             }
-            
+
+            .inner-2 {
+              display: flex;
+              justify-content: center;
+              gap: 25px;
+            }
           }
         `}
-            </style>
-        </div>
-    );
+      </style>
+    </div>
+  );
 }
 
 export default Services;
