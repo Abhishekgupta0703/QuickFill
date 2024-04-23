@@ -39,25 +39,24 @@ form {
   gap: 10px;
 }
 
-input {
-  padding: 10px;
-  border: none;
+/* input {
+  
   background-color: transparent;
   border-bottom: 1px solid #ccc;
   color: #000552;
   transition: box-shadow 0.3s;
-}
+} */
 
-input:focus {
+/* input:focus {
   box-shadow: 0 0 10px #19d4ca;
-}
+} */
 
-.buttons {
+/* .buttons {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 10px;
-}
+} */
 
 .submit-button,
 .link {
@@ -70,11 +69,11 @@ input:focus {
   text-decoration: none;
 }
 
-.submit-button {
+/* .submit-button {
   outline: 1px solid currentColor;
   background-color: transparent;
   color: #19d4ca;
-}
+} */
 
 .submit-button:hover {
   background-color: #19d4ca;

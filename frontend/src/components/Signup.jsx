@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {toast} from "react-hot-toast";
+import {LuMail, LuLock,LuUser} from 'react-icons/lu'
+import './login.css'
 
 export default function Signup() {
     const [formData, setFormData] = useState({
@@ -52,42 +54,56 @@ export default function Signup() {
     };
 
     return (
-        <div className="container">
-            <h1 className="title"> Register</h1>
-            <div className="card">
-                <form onSubmit={submitHandle}>
-                    <input
-                        type="text"
-                        placeholder="Enter your name..."
-                        name="name"
-                        onChange={handleInputChange}
-                        value={formData.name}
-                    />
-                    <input
-                        type="email"
-                        placeholder="Enter your email..."
-                        name="email"
-                        onChange={handleInputChange}
-                        value={formData.email}
-                    />
-                    <input
-                        type="password"
-                        placeholder="Enter Password"
-                        name="password"
-                        onChange={handleInputChange}
-                        value={formData.password}
-                        autoComplete="on"
-                    />
-                    <div className="buttons">
-                        <Link to={"/login"} className="link">
-                            Login
-                        </Link>
-                        <button type="submit" className="submit-button">
+        <div className="login">
+            <div className="login-inner">
+                <div className="left">
+                    <img src="https://cdni.iconscout.com/illustration/premium/thumb/login-3305943-2757111.png" alt="" />
+                </div>
+                <div className="right"><h1>Member Register</h1>
+                    <form onSubmit={submitHandle}>
+                        <div className="input-box">
+                            <LuUser className="login-icons" />
+                            <input
+                                type="text"
+                                placeholder="Name"
+                                name="name"
+                                onChange={handleInputChange}
+                                value={formData.name}
+                                autoComplete="off"
+                            />
+                        </div>
+                        <div className="input-box">
+                            <LuMail className="login-icons" />
+                            <input
+                                type="text"
+                                placeholder="Email"
+                                name="email"
+                                onChange={handleInputChange}
+                                value={formData.email}
+                                autoComplete="off"
+                            />
+                        </div>
+                        <div className="input-box">
+                            <LuLock className="login-icons" />
+
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                name="password"
+                                onChange={handleInputChange}
+                                value={formData.password}
+                                autoComplete="off"
+                            />
+                        </div>
+                        <button type="submit">
                             Register
                         </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+                    </form>
+                    <p> Do you have an account? <Link to={"/login"} >
+                        Login
+                    </Link></p>
+
+                </div>
+            </div> </div>
     );
 }

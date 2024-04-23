@@ -88,6 +88,7 @@ function Services() {
                 height: 120%;
                 object-fit: contain;
                 aspect-ratio: 1;
+                transition: all 0.2s ease-in-out;
               }
             }
 
@@ -96,7 +97,11 @@ function Services() {
               justify-content: center;
               gap: 25px;
             }
+          
+          .service-card:hover .img img{
+            transform: scale(1.1);
           }
+        }
         `}
       </style>
     </div>

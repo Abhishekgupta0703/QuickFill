@@ -5,8 +5,8 @@ import "./navbar.css";
 export default function Navbar() {
     const navigate = useNavigate();
     const auth1 = localStorage.getItem("token");
-        const auth2 = localStorage.getItem("master");
-        const auth3=localStorage.getItem("pumpToken");
+    const auth2 = localStorage.getItem("master");
+    const auth3 = localStorage.getItem("pumpToken");
     const logout = (e) => {
         e.preventDefault();
         localStorage.removeItem("token");
@@ -25,16 +25,7 @@ export default function Navbar() {
                         <h4>Home</h4>
                     </Link>
                 </li>
-                <li className="list-item">
-                    <Link to="/" className="nav-link">
-                        <h4>Services</h4>
-                    </Link>
-                </li>
-                <li className="list-item">
-                    <Link to="/" className="nav-link">
-                        <h4>Our Team</h4>
-                    </Link>
-                </li>
+
 
                 {auth1 ? (
                     <>
@@ -55,7 +46,7 @@ export default function Navbar() {
                         </li>
                     </>
                 ) : auth2 ? (<>
-                        <li className="list-item">
+                    <li className="list-item">
                         <Link to="/AddPetrolPump" className="nav-link">
                             <h4>Add Pump</h4>
                         </Link></li>
@@ -64,28 +55,43 @@ export default function Navbar() {
                             <h4>Loguot</h4>
                         </Link>
                     </li>
+                </>
+                ) : auth3 ? (
+                    <>
+                        <li className="list-item">
+                            <Link to="/PumpDashboard" className="nav-link">
+                                <h4>Dashboard</h4>
+                            </Link></li>
+                        <li className="list-item">
+                            <Link to="/logout" className="nav-link" onClick={logout}>
+                                <h4>Loguot</h4>
+                            </Link>
+                        </li>
+
+                    </>) : (
+                    <>
+                        <li className="list-item">
+                            <Link to="/" className="nav-link">
+                                <h4>Services</h4>
+                            </Link>
+                        </li>
+                        <li className="list-item">
+                            <Link to="/" className="nav-link">
+                                <h4>Partners</h4>
+                            </Link>
+                        </li>
+                        <li className="list-item">
+                            <Link to="/" className="nav-link">
+                                <h4>Our Team</h4>
+                            </Link>
+                        </li>
+                        <li className="list-item">
+                            <Link to="/login" className="nav-link">
+                                <h4>Login</h4>
+                            </Link>
+                        </li>
                     </>
-                ) :auth3? (
-                            <>
-                               <li className="list-item">
-                        <Link to="/PumpDashboard" className="nav-link">
-                            <h4>Dashboard</h4>
-                        </Link></li>
-                    <li className="list-item">
-                        <Link to="/logout" className="nav-link" onClick={logout}>
-                            <h4>Loguot</h4>
-                        </Link>
-                    </li>
-                        
-                            </>) : (
-                                <>
-                            <li className="list-item">
-                                <Link to="/login" className="nav-link">
-                                    <h4>Login</h4>
-                                </Link>
-                            </li>
-                                </>
-                    )}
+                )}
             </ul>
         </nav>
     );
