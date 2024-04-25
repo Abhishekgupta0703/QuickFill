@@ -95,7 +95,7 @@ const getProfile = async (req, res) => {
         }
 
         // Find EV slots for the user
-        const evSlots = await EVBooking.find({ userId: userId });
+        const evSlots = await EVBooking.find({userId: userId}).populate("pumpId");
         // Find CNG slots for the user
         const cngSlots = await CNGBooking.find({ userId: userId });
 

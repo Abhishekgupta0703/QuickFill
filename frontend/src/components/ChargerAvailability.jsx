@@ -63,16 +63,13 @@ const ChargerAvailability = ({charger, userId, pumpId, }) => {
     const handleSlotSelect = (selectedOption) => {
         setSelectedSlot(selectedOption);
     };
-    // useEffect (() => {
-    //     const date = new Date().toISOString().substr(0, 10);
-    //     console.log(date)
-    // },date)
+
     const handleBooking = async () => {
         if (!vehicleNo || !selectedSlot) {
             toast.error('Please fill all fields');
             return;
         }
- 
+
         try {
             const bookingData = {
                 userId: userId,
@@ -126,24 +123,25 @@ const ChargerAvailability = ({charger, userId, pumpId, }) => {
             description: 'Test Transaction',
             image: 'https://example.com/your_logo',
             order_id: order.data.data.id,
-            handler:async function (response) {
+            handler: async function (response) {
                 const userData = {
-                    razorpay_payment_id :response.razorpay_payment_id, 
-                    razorpay_order_id:response.razorpay_order_id, 
-                    razorpay_signature:response.razorpay_signature 
+                    razorpay_payment_id: response.razorpay_payment_id,
+                    razorpay_order_id: response.razorpay_order_id,
+                    razorpay_signature: response.razorpay_signature
                 }
                 const orderResult = await axios.post('http://localhost:5000/verify-order', userData);
-                if(orderResult.data.success){
+                if (orderResult.data.success) {
                     handleBooking();
+
                 }
             },
             prefill: {
-                name: 'Gaurav Kumar',
-                email: 'gaurav.kumar@example.com',
+                name: 'Abhishek Gupta',
+                email: 'Abhishek@gupta.com',
                 contact: '9000090000',
             },
             notes: {
-                address: 'Razorpay Corporate Office',
+                address: 'Quick Fill Office',
             },
             theme: {
                 color: '#3399cc',
@@ -160,10 +158,10 @@ const ChargerAvailability = ({charger, userId, pumpId, }) => {
         <div className="ev-charger">
             <h3>Electric Charger Availability</h3>
             <p>Available: {available ? "Yes" : "No"}</p>
-            <p>Speed: {percent || '0'}% in {time || "0"} Minutes</p>
-            <p>Slots: {slots}</p>
-            <p>Current Queue: {queue}</p>
-            {available && <button onClick={openModal}>Book Your Slot</button>}
+            {available && <><p>Speed: {percent || '0'}% in {time || "0"} Minutes</p>
+                <p>Slots: {slots}</p>
+                <p>Current Queue: {queue}</p></>}
+            {available && queue < slots ? <button onClick={openModal}>Book Your Slot</button> : <h2>Slots not Available</h2>}
             <Modal
                 isOpen={modalIsOpen}
                 onAfterOpen={afterOpenModal}
@@ -185,7 +183,7 @@ const ChargerAvailability = ({charger, userId, pumpId, }) => {
                         value={selectedSlot}
                         placeholder="Select Time Slot"
                     />
-                    <button className="btn" type="button" onClick={()=>openRazorpay()}>Book</button>
+                    <button className="btn" type="button" onClick={() => openRazorpay()}>Book</button>
                 </form>
                 <button onClick={closeModal} className="btn red">Close</button>
             </Modal>

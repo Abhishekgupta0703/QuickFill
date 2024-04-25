@@ -1,4 +1,5 @@
 const { EVBooking, CNGBooking, Payment } = require("../db/Booking");
+const PetrolPump =require('../db/PetrolPump')
 const { razorpay } = require("../config/razorpayConfig");
 const crypto = require("crypto");
 const evBooking = async (req, res) => {
@@ -7,6 +8,7 @@ const evBooking = async (req, res) => {
     const { userId, pumpId, vehicleNo, timeSlot } = req.body;
     const evBooking = new EVBooking({ userId, pumpId, vehicleNo, timeSlot });
     await evBooking.save();
+    await PetrolPump.findByIdAndUpdate(pumpId, { $inc: { 'charger.queue': 1 } });
     res.status(201).send("EV Booking created successfully");
   } catch (error) {
     res.status(500).send(error.message);
@@ -17,6 +19,7 @@ const cngBooking = async (req, res) => {
     const { userId, pumpId, vehicleNo, timeSlot } = req.body;
     const cngBooking = new CNGBooking({ userId, pumpId, vehicleNo, timeSlot });
     await cngBooking.save();
+    await PetrolPump.findByIdAndUpdate(pumpId, { $inc: { 'cng.queue': 1 } });
     res.status(201).send("CNG Booking created successfully");
   } catch (error) {
     res.status(500).send(error.message);

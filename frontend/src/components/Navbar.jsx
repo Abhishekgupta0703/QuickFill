@@ -36,7 +36,7 @@ export default function Navbar() {
                         </li>
                         <li className="list-item">
                             <Link to="/Profile" className="nav-link" >
-                                <h4>Profile</h4>
+                                <h4>DashBoard</h4>
                             </Link>
                         </li>
                         <li className="list-item">

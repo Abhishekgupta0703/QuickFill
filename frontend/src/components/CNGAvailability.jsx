@@ -6,10 +6,10 @@ const CNGAvailability = ({cng}) => {
         <div className="cng-refuel">
             <h3>CNG Availability</h3>
             <p>Available: {cng.available ? "Yes" : "No"}</p>
-            <p>Total Nozzles: {cng.nozzles}</p>
-            <p>Filling Rate: {cng.fillingRate}</p>
-            <p>Current Queue:{cng.queue}</p>
-           {cng.available&& <button>Book Your Slot</button>}
+            {cng.available&&< ><p>Total Nozzles: {cng.nozzles}</p>
+                <p>Filling Rate: {cng.fillingRate}</p>
+                <p>Current Queue:{cng.queue}</p></>}
+            {cng.available && <button>Book Your Slot</button>}
             <style jsx="true">{`
                         .cng-refuel{
                             text-align: center;

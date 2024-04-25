@@ -10,11 +10,10 @@ export default function Home() {
             <Hero />
             <Services />
             <Partners />
-            <Team/>
+            <Team />
             <style jsx ='true'>
                 {
-                    `.home{
-                    }`
+                    ``
                 }
             </style>
         </div>

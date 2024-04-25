@@ -168,7 +168,7 @@ const userId = userInfo._id;
                 {`
                     .booking-container {
                         width: 100%;
-                        height: calc(95vh - var(--navbar-height));
+                        min-height: calc(95vh - var(--navbar-height));
 
                         .b1 {
                             display: flex;
