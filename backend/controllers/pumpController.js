@@ -15,7 +15,7 @@ const addPump = async (req, res) => {
     if (!email) {
       return res.status(400).send({error: "Email is required."});
     }
-    if (!password || password.length <= 8) {
+    if (!password || password.length < 8) {
       return res.status(400).send({error: "Password must be at least 8 characters long"});
 
     }
@@ -34,7 +34,7 @@ const addPump = async (req, res) => {
     const newPump = await Pump.create({
       pd,
       email,
-      hashedPassword,
+      password:hashedPassword,
       name,
       location,
       charger,

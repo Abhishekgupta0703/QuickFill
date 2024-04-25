@@ -20,6 +20,7 @@ const pumpSchema = new mongoose.Schema({
     },
     password: {
         type: String,
+        required:true
     },
     charger: {
         available: {

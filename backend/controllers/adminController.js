@@ -23,9 +23,7 @@ const loginPump = async (req, res) => {
             return res.json({error: 'No pump found'});
         }
 
-        if (password !== pump.password) {
-            return res.json({ error: "Password doesn't match" });
-        }
+    
         const match = await comparePassword(password, pump.password);
         if (match) {
             jwt.sign({pumpName: pump.name, email: pump.email, id: pump._id}, `${process.env.JWT_SECRET}`, {}, (err, token) => {
