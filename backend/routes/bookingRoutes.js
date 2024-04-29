@@ -8,6 +8,8 @@ const {
   createRazorpayOrder,
   verifySignature,
   checkStatus,
+  evCount,
+  cngCount,
 } = require("../controllers/bookController");
 
 // Middleware for CORS configuration
@@ -18,7 +20,9 @@ router.use(
   })
 );
 router.post("/Booking/EV", evBooking);
+router.get('/Booking/EV/count',evCount)
 router.post("/Booking/CNG", cngBooking);
+router.get("/Booking/CNG/count", cngCount);
 router.post("/create-order", createRazorpayOrder);
 router.post("/verify-order", verifySignature);
 router.post("/check-status", checkStatus);

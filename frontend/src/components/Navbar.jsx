@@ -52,7 +52,7 @@ export default function Navbar() {
                         </Link></li>
                     <li className="list-item">
                         <Link to="/logout" className="nav-link" onClick={logout}>
-                            <h4>Loguot</h4>
+                            <h4>Logout</h4>
                         </Link>
                     </li>
                 </>
@@ -64,7 +64,7 @@ export default function Navbar() {
                             </Link></li>
                         <li className="list-item">
                             <Link to="/logout" className="nav-link" onClick={logout}>
-                                <h4>Loguot</h4>
+                                <h4>Logout</h4>
                             </Link>
                         </li>
 

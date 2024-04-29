@@ -2,15 +2,17 @@ const { EVBooking, CNGBooking, Payment } = require("../db/Booking");
 const PetrolPump =require('../db/PetrolPump')
 const { razorpay } = require("../config/razorpayConfig");
 const crypto = require("crypto");
+const {log} = require("console");
 const evBooking = async (req, res) => {
   // console.log("reached");
   try {
-    const { userId, pumpId, vehicleNo, timeSlot } = req.body;
-    const evBooking = new EVBooking({ userId, pumpId, vehicleNo, timeSlot });
+    const { userId, pumpId, vehicleNo, timeSlot,bookedAt } = req.body;
+    const evBooking = new EVBooking({ userId, pumpId, vehicleNo, timeSlot ,bookedAt});
     await evBooking.save();
     await PetrolPump.findByIdAndUpdate(pumpId, { $inc: { 'charger.queue': 1 } });
     res.status(201).send("EV Booking created successfully");
   } catch (error) {
+    console.log(error)
     res.status(500).send(error.message);
   }
 };
@@ -25,7 +27,32 @@ const cngBooking = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+const evCount = async (req, res) => {
+  try {
+    const { timeSlot, pumpId } = req.query;
 
+    // Query the database to count booked slots
+    const count = await EVBooking.countDocuments({ timeSlot, pumpId });
+
+    res.status(200).json({ count });
+} catch (error) {
+    console.error('Error fetching booked slots:', error);
+    res.status(500).json({ error: 'Server error' });
+}
+};
+const cngCount = async (req, res) => {
+  try {
+    const { timeSlot, pumpId } = req.query;
+
+    // Query the database to count booked slots
+    const count = await CNGBooking.countDocuments({ timeSlot, pumpId });
+
+    res.status(200).json({ count });
+} catch (error) {
+    console.error('Error fetching booked slots:', error);
+    res.status(500).json({ error: 'Server error' });
+}
+};
 const createRazorpayOrder = async (req, res) => {
   const { userId } = req.body;
   if (!userId)
@@ -100,6 +127,8 @@ const checkStatus = async (req, res) => {
 module.exports = {
   evBooking,
   cngBooking,
+  evCount,
+  cngCount,
   createRazorpayOrder,
   verifySignature,
   checkStatus,

@@ -1,6 +1,6 @@
-const Pump=require('../db/PetrolPump')
+const Pump = require('../db/PetrolPump');
 const {EVBooking, CNGBooking} = require('../db/Booking');
-const {hashPassword, comparePassword} = require('../helpers/auth');
+const {comparePassword} = require('../helpers/auth');
 const jwt = require('jsonwebtoken');
 
 const loginPump = async (req, res) => {
@@ -17,13 +17,12 @@ const loginPump = async (req, res) => {
             return res.json({error: 'Password is required and should be at least 6 characters long'});
         }
 
-        // Check if user exists
         const pump = await Pump.findOne({email});
         if (!pump) {
             return res.json({error: 'No pump found'});
         }
 
-    
+
         const match = await comparePassword(password, pump.password);
         if (match) {
             jwt.sign({pumpName: pump.name, email: pump.email, id: pump._id}, `${process.env.JWT_SECRET}`, {}, (err, token) => {
@@ -31,7 +30,7 @@ const loginPump = async (req, res) => {
                 res.cookie('pumpToken', token).json(pump);
             });
         }
-        
+
     } catch (error) {
         console.log(error);
     }
@@ -39,27 +38,27 @@ const loginPump = async (req, res) => {
 
 const pumpDashboard = async (req, res) => {
     try {
-        const { pumpId } = req.query; // Extract pumpId from query parameters
+        const {pumpId} = req.query; // Extract pumpId from query parameters
 
         // Use pumpId to fetch pump profile data
-        const pump = await Pump.findOne({ _id: pumpId });
+        const pump = await Pump.findOne({_id: pumpId});
         if (!pump) {
-            return res.status(404).json({ message: 'Pump not found' });
+            return res.status(404).json({message: 'Pump not found'});
         }
 
         // Find EV slots for the pump
-        const evSlots = await EVBooking.find({pumpId: pumpId});
+        const evSlots = await EVBooking.find({pumpId}).populate("userId");
         // Find CNG slots for the pump
-        const cngSlots = await CNGBooking.find({ pumpId: pumpId });
+        const cngSlots = await CNGBooking.find({pumpId}).populate("userId");
 
         // Send pump profile data and slots without sensitive information
         const pumpProfile = pump
 
         // Return the pump profile and slots as an object
-        res.json({ pumpProfile, evSlots, cngSlots });
+        res.json({pumpProfile, evSlots, cngSlots});
     } catch (error) {
         console.error('Error fetching pump profile:', error.message);
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({message: 'Server error'});
     }
 };
 module.exports = {

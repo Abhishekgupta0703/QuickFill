@@ -18,7 +18,7 @@ function Footer() {
                     <h2>Helpful Links</h2>
                     <div className="links">
                         <Link to="/">Home</Link>
-                        <Link to="/Book">Book Slot</Link>
+                        <Link to="/Petrol">Book Slot</Link>
                         <Link to="/CNG">CNG</Link>
                         <Link to="/EV">EV Charging</Link>
                         <Link to="/PetrolPumpLogin">Pump Login</Link>

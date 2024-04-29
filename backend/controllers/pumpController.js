@@ -34,7 +34,7 @@ const addPump = async (req, res) => {
     const newPump = await Pump.create({
       pd,
       email,
-      password:hashedPassword,
+      password: hashedPassword,
       name,
       location,
       charger,
