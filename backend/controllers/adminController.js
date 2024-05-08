@@ -29,6 +29,8 @@ const loginPump = async (req, res) => {
                 if (err) throw err;
                 res.cookie('pumpToken', token).json(pump);
             });
+        } else {
+            return res.json({error: "Password doesn't match"});
         }
 
     } catch (error) {

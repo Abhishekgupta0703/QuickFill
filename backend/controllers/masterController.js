@@ -1,4 +1,5 @@
 const Master = require("../db/Master");
+const PetrolPump = require("../db/PetrolPump");
 const {comparePassword, hashPassword} = require("../helpers/auth");
 const jwt = require('jsonwebtoken');
 const test = (req, res) => {
@@ -81,9 +82,24 @@ const masterLogin = async (req, res) => {
     }
 
 }
+const pumpList = async (req, res) => {
+
+    try {
+        // Fetch all petrol pumps from the database
+        const petrolPumps = await PetrolPump.find();
+
+        // Send the list of petrol pumps as a response
+        res.status(200).json({petrolPumps});
+    } catch (error) {
+        console.error('Error fetching petrol pumps:', error);
+        res.status(500).json({error: 'Server error'});
+    }
+
+}
 
 module.exports = {
     masterLogin,
     masterRegister,
+    pumpList,
     test
 }

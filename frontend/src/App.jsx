@@ -17,6 +17,7 @@ import PumpDashboard from './pages/PumpDashboard'
 import MasterLogin from './components/MasterLogin'
 import PrivateMaster from './components/PrivateMaster'
 import NoPage from './components/NoPage'
+import MasterPumpList from './pages/MasterPumpList'
 export default function App() {
   return (
     <div>
@@ -38,6 +39,7 @@ export default function App() {
           </Route>
           <Route element={<PrivateMaster />}>
             <Route exact path="/AddPetrolPump" element={<AddPetrolPump />} />
+            <Route exact path="/masterGetPumps" element={<MasterPumpList />} />
           </Route>
           <Route element={<PrivatePump />}>
             <Route exact path='PumpDashboard' element={<PumpDashboard />} />

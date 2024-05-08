@@ -51,6 +51,10 @@ export default function Navbar() {
                             <h4>Add Pump</h4>
                         </Link></li>
                     <li className="list-item">
+                        <Link to="/masterGetPumps" className="nav-link">
+                            <h4>Stations List</h4>
+                        </Link></li>
+                    <li className="list-item">
                         <Link to="/logout" className="nav-link" onClick={logout}>
                             <h4>Logout</h4>
                         </Link>
