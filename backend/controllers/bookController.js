@@ -4,7 +4,6 @@ const { razorpay } = require("../config/razorpayConfig");
 const crypto = require("crypto");
 const {log} = require("console");
 const evBooking = async (req, res) => {
-  // console.log("reached");
   try {
     const { userId, pumpId, vehicleNo, timeSlot,bookedAt } = req.body;
     const evBooking = new EVBooking({ userId, pumpId, vehicleNo, timeSlot ,bookedAt});
@@ -18,8 +17,8 @@ const evBooking = async (req, res) => {
 };
 const cngBooking = async (req, res) => {
   try {
-    const { userId, pumpId, vehicleNo, timeSlot } = req.body;
-    const cngBooking = new CNGBooking({ userId, pumpId, vehicleNo, timeSlot });
+    const { userId, pumpId, vehicleNo, timeSlot, bookedAt } = req.body;
+    const cngBooking = new CNGBooking({ userId, pumpId, vehicleNo, timeSlot,bookedAt });
     await cngBooking.save();
     await PetrolPump.findByIdAndUpdate(pumpId, { $inc: { 'cng.queue': 1 } });
     res.status(201).send("CNG Booking created successfully");

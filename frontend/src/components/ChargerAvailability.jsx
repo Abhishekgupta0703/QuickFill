@@ -1,5 +1,5 @@
 //ChargerAvailability.jsx
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import Modal from "react-modal";
 import Select from "react-select";
 import toast from "react-hot-toast"; // Import toast for notifications
@@ -19,12 +19,12 @@ const customStyles = {
 
 Modal.setAppElement("#root"); // Set the app element
 
-const ChargerAvailability = ({ charger, userId, pumpId }) => {
-  const { available, percent, time, slots, queue } = charger;
+const ChargerAvailability = ({charger, userId, pumpId}) => {
+  const {available, percent, time, slots, queue} = charger;
   const [modalIsOpen, setIsOpen] = useState(false);
   const [vehicleNo, setVehicleNo] = useState("");
-    const [selectedSlot, setSelectedSlot] = useState(null);
-    const [bookedSlots, setBookedSlots] = useState(null);
+  const [selectedSlot, setSelectedSlot] = useState(null);
+  const [bookedSlots, setBookedSlots] = useState(null);
   useEffect(() => {
     const fetchBookedSlots = async () => {
       try {
@@ -42,9 +42,9 @@ const ChargerAvailability = ({ charger, userId, pumpId }) => {
     };
     fetchBookedSlots();
   }, [selectedSlot, pumpId]);
-    
-    
-    
+
+
+
   function openModal() {
     setIsOpen(true);
   }
@@ -94,20 +94,29 @@ const ChargerAvailability = ({ charger, userId, pumpId }) => {
   const handleSlotSelect = (selectedOption) => {
     setSelectedSlot(selectedOption);
   };
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
 
+  today = dd + '/' + mm + '/' + yyyy;
   const handleBooking = async () => {
     if (!vehicleNo || !selectedSlot) {
       toast.error("Please fill all fields");
       return;
     }
 
+    var currentDateTime = new Date();
+
+    var formattedDate = currentDateTime.toLocaleDateString('en-US');
+    console.log(formattedDate)
     try {
       const bookingData = {
         userId: userId,
         pumpId: pumpId,
         vehicleNo: vehicleNo,
         timeSlot: selectedSlot.value,
-        bookedAt: new Date()
+        bookedAt: today
       };
 
       const response = await axios.post(
@@ -188,8 +197,8 @@ const ChargerAvailability = ({ charger, userId, pumpId }) => {
       toast.error("Payment Failed");
     });
     rzp1.open();
-    };
-    const isSlotDisabled = available && bookedSlots >= slots;
+  };
+  const isSlotDisabled = available && bookedSlots >= slots;
 
   return (
     <div className="ev-charger">
@@ -204,7 +213,7 @@ const ChargerAvailability = ({ charger, userId, pumpId }) => {
           {/* <p>Current Queue: {queue}</p> */}
         </>
       )}
-      {available && queue < slots*6 ? (
+      {available && queue < slots * 6 ? (
         <button onClick={openModal}>Book Your Slot</button>
       ) : (
         <h2>Slots not Available</h2>

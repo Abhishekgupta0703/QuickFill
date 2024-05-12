@@ -65,6 +65,8 @@ const CNGAvailability = ({cng, userId, pumpId, }) => {
     };
 
     const handleBooking = async () => {
+        const currentDateTime = new Date();
+        const formattedDate = currentDateTime.toLocaleDateString();
         if (!vehicleNo || !selectedSlot) {
             toast.error('Please fill all fields');
             return;
@@ -76,7 +78,7 @@ const CNGAvailability = ({cng, userId, pumpId, }) => {
                 pumpId: pumpId,
                 vehicleNo: vehicleNo,
                 timeSlot: selectedSlot.value,
-                bookedAt: new Date()
+                bookedAt: formattedDate,
 
             };
 

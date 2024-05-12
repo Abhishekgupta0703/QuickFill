@@ -36,15 +36,18 @@ function MasterPumpList() {
                 </thead>
                 <tbody>
                     {petrolPumps.map(pump => (
-                        <tr key={pump._id}>
-                            <td>{pump.pd}</td>
-                            <td>{pump.name}</td>
-                            <td>{pump.email}</td>
-                            <td>{pump.location}</td>
-                            <td>{pump.cng?.available?"Yes":"No"}</td>{/*  some problem */}
-                            <td>{pump.ev?.available?"Yes":"No"}</td>{/*  some problem */}
-                            {/* Add more table cells for other details */}
-                        </tr>
+                        <>
+
+
+                            <tr key={pump._id}>
+                                <td>{pump.pd}</td>
+                                <td>{pump.name}</td>
+                                <td>{pump.email}</td>
+                                <td>{pump.location}</td>
+                                <td>{pump.cng?.available ? "Yes" : "No"}</td>{/*  some problem */}
+                                <td>{pump.ev?.available ? "Yes" : "No"}</td>{/*  some problem */}
+                                {/* Add more table cells for other details */}
+                            </tr></>
                     ))}
                 </tbody>
             </table>

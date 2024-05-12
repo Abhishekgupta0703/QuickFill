@@ -114,6 +114,7 @@ export default function ProfilePage() {
 
                 <tbody>
                   {evSlots.slice().reverse().map(slot =>
+                    
                     <tr
                       key={slot._id}
                       className={ 
