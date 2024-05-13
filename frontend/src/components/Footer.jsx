@@ -18,9 +18,9 @@ function Footer() {
                     <h2>Helpful Links</h2>
                     <div className="links">
                         <Link to="/">Home</Link>
-                        <Link to="/Petrol">Book Slot</Link>
-                        <Link to="/CNG">CNG</Link>
-                        <Link to="/EV">EV Charging</Link>
+                        <Link to="/PetrolPump">Book Slot</Link>
+                        <Link to="/PetrolPump">CNG</Link>
+                        <Link to="/PetrolPump">EV Charging</Link>
                         <Link to="/PetrolPumpLogin">Pump Login</Link>
                     </div>
                 </div>
@@ -32,7 +32,7 @@ function Footer() {
                 <div className="f14">
                     <h2>Our Team</h2>
                     <div className="links">
-                        <Link to="" className="linkedin">Abhishek Gupta </Link>
+                        <Link to="https://www.linkedin.com/in/abhishekgupta0703/" className="linkedin">Abhishek Gupta </Link>
                         <Link to="" className="linkedin">Alok Singh </Link>
                         <Link to="" className="linkedin">Pranjal Bajpai </Link>
                         <Link to="" className="linkedin">Shweta Yadav </Link>

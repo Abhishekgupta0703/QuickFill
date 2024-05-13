@@ -75,17 +75,17 @@ export default function Navbar() {
                     </>) : (
                     <>
                         <li className="list-item">
-                            <Link to="/" className="nav-link">
+                            <Link to="/#services" className="nav-link">
                                 <h4>Services</h4>
                             </Link>
                         </li>
                         <li className="list-item">
-                            <Link to="/" className="nav-link">
+                            <Link to="#partners" className="nav-link">
                                 <h4>Partners</h4>
                             </Link>
                         </li>
                         <li className="list-item">
-                            <Link to="/" className="nav-link">
+                            <Link to="#team" className="nav-link">
                                 <h4>Our Team</h4>
                             </Link>
                         </li>

@@ -1,7 +1,7 @@
 import React from "react";
 function Services() {
   return (
-    <div className="services">
+    <div className="services" id="services" >
       <div className="inner-services">
         <div className="inner-1">
           <h1>Explore Our Services</h1>
@@ -14,10 +14,9 @@ function Services() {
                 alt=""
               />
             </div>
-            <h2>Lorem, ipsum dolor.</h2>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id iure
-              impedit, beatae explicabo possimus nemo.
+            <h2>Token Generation for EV Bookings</h2>
+            <p className="justify">
+              Automated token generation mechanism facilitating hassle-free CNG refueling slot bookings.
             </p>
           </div>
           <div className="service-card">
@@ -27,10 +26,9 @@ function Services() {
                 alt=""
               />
             </div>
-            <h2>Lorem, ipsum dolor.</h2>
+            <h2>Token Generation for CNG Bookings</h2>
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id iure
-              impedit, beatae explicabo possimus nemo.
+              Digital queue handling to streamline and optimize the process of EV and CNG slot reservations.
             </p>
           </div>
           <div className="service-card">
@@ -40,16 +38,19 @@ function Services() {
                 alt=""
               />
             </div>
-            <h2>Lorem, ipsum dolor.</h2>
+            <h2>Real-time Slot Availability Updates</h2>
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id iure
-              impedit, beatae explicabo possimus nemo.
+              Instant notifications and updates on available slots for timely and convenient EV and CNG bookings.
             </p>
           </div>
         </div>
       </div>
       <style jsx="true">
         {`
+        .justify{
+          text-align: justify;
+          text-justify: inter-word;
+        }
           .services {
             color: #112d4e;
             background: url(https://e-amrit.niti.gov.in/assets/admin/dist/img/new-fronend-img/ourtoolsbg.jpg);

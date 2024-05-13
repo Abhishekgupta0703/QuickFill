@@ -13,8 +13,8 @@ function Team() {
                         </div>
                         <div className="profile-det"><h2>Abhishek Gupta</h2><h3>MERN Stack Developer</h3><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum tenetur in aut?</p>
                             <ul >
-                                <li><a href=""><i className='fa-brands fa-linkedin'></i></a></li>
-                                <li><a href=""><i className='fa-brands fa-github'></i></a></li>
+                                <li><a href="https://www.linkedin.com/in/abhishekgupta0703/"><i className='fa-brands fa-linkedin'></i></a></li>
+                                <li><a href="https://github.com/abhishekgupta0703/"><i className='fa-brands fa-github'></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -22,10 +22,10 @@ function Team() {
                         <div className="profile-img">
                             <img src={profile2} alt="" />
                         </div>
-                        <div className="profile-det"><h2>Abhishek Gupta</h2><h3>MERN Stack Developer</h3><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum tenetur in aut?</p>
+                        <div className="profile-det"><h2>Alok Singh</h2><h3>React Developer</h3><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum tenetur in aut?</p>
                             <ul >
-                                <li><a href=""><i className='fa-brands fa-linkedin'></i></a></li>
-                                <li><a href=""><i className='fa-brands fa-github'></i></a></li>
+                                <li><a href="https://www.linkedin.com/in/thisisaloksingh/"><i className='fa-brands fa-linkedin'></i></a></li>
+                                <li><a href="https://github.com/ialoksingh"><i className='fa-brands fa-github'></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -33,10 +33,10 @@ function Team() {
                         <div className="profile-img">
                             <img src={profile1} alt="" />
                         </div>
-                        <div className="profile-det"><h2>Abhishek Gupta</h2><h3>MERN Stack Developer</h3><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum tenetur in aut?</p>
+                        <div className="profile-det"><h2>Pranjal Bajpai</h2><h3>Backend Developer</h3><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum tenetur in aut?</p>
                             <ul >
-                                <li><a href=""><i className='fa-brands fa-linkedin'></i></a></li>
-                                <li><a href=""><i className='fa-brands fa-github'></i></a></li>
+                                <li><a href="https://www.linkedin.com/in/pranjal-bajpai-619067218/"><i className='fa-brands fa-linkedin'></i></a></li>
+                                <li><a href="https://github.com/Pranjal20003"><i className='fa-brands fa-github'></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -44,7 +44,7 @@ function Team() {
                         <div className="profile-img">
                             <img src={profile1} alt="" />
                         </div>
-                        <div className="profile-det"><h2>Abhishek Gupta</h2><h3>MERN Stack Developer</h3><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum tenetur in aut?</p>
+                        <div className="profile-det"><h2>Shweta Yadav</h2><h3>Frontend Developer</h3><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum tenetur in aut?</p>
                             <ul >
                                 <li><a href=""><i className='fa-brands fa-linkedin'></i></a></li>
                                 <li><a href=""><i className='fa-brands fa-github'></i></a></li>

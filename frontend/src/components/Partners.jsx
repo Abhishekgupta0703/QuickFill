@@ -44,7 +44,7 @@ const Banner = ({images, speed = 10000}) => {
 };
 function Partners() {
     return (
-        <div className="partners">
+        <div className="partners" id="partners">
             <h1>Our Partners</h1>
             <Banner images={images} speed={10000} />
             <style jsx="true">

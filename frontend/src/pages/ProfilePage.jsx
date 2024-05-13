@@ -211,7 +211,8 @@ export default function ProfilePage() {
               .img,
               .user-info{
                 text-align:center;
-                height:50vh;
+                margin-top:45px;
+                // height:50vh;
                 width:100%;
                 padding-top:15px;
                 img{
