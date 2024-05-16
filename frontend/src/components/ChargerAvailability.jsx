@@ -5,6 +5,7 @@ import Select from "react-select";
 import toast from "react-hot-toast"; // Import toast for notifications
 import axios from "axios"; // Import axios for HTTP requests
 import Clock from "./Clock";
+import { useNavigate } from "react-router-dom";
 
 const customStyles = {
   content: {
@@ -20,6 +21,7 @@ const customStyles = {
 Modal.setAppElement("#root"); // Set the app element
 
 const ChargerAvailability = ({charger, userId, pumpId}) => {
+  const navigate = useNavigate();
   const {available, percent, time, slots, queue} = charger;
   const [modalIsOpen, setIsOpen] = useState(false);
   const [vehicleNo, setVehicleNo] = useState("");
@@ -94,12 +96,7 @@ const ChargerAvailability = ({charger, userId, pumpId}) => {
   const handleSlotSelect = (selectedOption) => {
     setSelectedSlot(selectedOption);
   };
-  var today = new Date();
-  var dd = String(today.getDate()).padStart(2, '0');
-  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-  var yyyy = today.getFullYear();
 
-  today = dd + '/' + mm + '/' + yyyy;
   const handleBooking = async () => {
     if (!vehicleNo || !selectedSlot) {
       toast.error("Please fill all fields");
@@ -107,16 +104,15 @@ const ChargerAvailability = ({charger, userId, pumpId}) => {
     }
 
     var currentDateTime = new Date();
+    var formattedDate = currentDateTime.toLocaleDateString('en-IN');
 
-    var formattedDate = currentDateTime.toLocaleDateString('en-US');
-    console.log(formattedDate)
     try {
       const bookingData = {
         userId: userId,
         pumpId: pumpId,
         vehicleNo: vehicleNo,
         timeSlot: selectedSlot.value,
-        bookedAt: today
+        bookedAt: formattedDate,
       };
 
       const response = await axios.post(
@@ -127,6 +123,7 @@ const ChargerAvailability = ({charger, userId, pumpId}) => {
 
         closeModal();
         toast.success("Slot booked successfully");
+        navigate("/Profile");
       }
     } catch (error) {
       console.log(error);

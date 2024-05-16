@@ -5,6 +5,7 @@ import Select from "react-select";
 import toast from 'react-hot-toast'; // Import toast for notifications
 import axios from "axios"; // Import axios for HTTP requests
 import Clock from "./Clock";
+import {useNavigate} from "react-router-dom";
 
 const customStyles = {
     content: {
@@ -20,6 +21,7 @@ const customStyles = {
 Modal.setAppElement('#root'); // Set the app element
 
 const CNGAvailability = ({cng, userId, pumpId, }) => {
+    const navigate = useNavigate();
     const {available, fillingRate, capacity, queue} = cng;
     const [modalIsOpen, setIsOpen] = useState(false);
     const [vehicleNo, setVehicleNo] = useState('');
@@ -66,7 +68,7 @@ const CNGAvailability = ({cng, userId, pumpId, }) => {
 
     const handleBooking = async () => {
         const currentDateTime = new Date();
-        const formattedDate = currentDateTime.toLocaleDateString();
+        var formattedDate = currentDateTime.toLocaleDateString('en-IN');
         if (!vehicleNo || !selectedSlot) {
             toast.error('Please fill all fields');
             return;
@@ -88,6 +90,8 @@ const CNGAvailability = ({cng, userId, pumpId, }) => {
                 // updatePumpsData(pumpId);
                 closeModal();
                 toast.success('Slot booked successfully');
+                navigate("/Profile");
+
             }
         } catch (error) {
             toast.error('Error booking slot');

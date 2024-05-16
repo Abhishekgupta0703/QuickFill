@@ -22,7 +22,7 @@ const EVBookingSchema = new mongoose.Schema({
     required: true,
   },
   bookedAt: {
-    type: Date,
+    type: String,
     required:true,
     // default: Date(),
   },
@@ -49,7 +49,7 @@ const CNGBookingSchema = new mongoose.Schema({
     required: true,
   },
   bookedAt: {
-    type: Date,
+    type: String,
     required:true,
 
     // default: Date.now(),

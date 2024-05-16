@@ -39,48 +39,18 @@ function PumpDashboard() {
   );
   const isSlotExpired = (bookedAt, slotTiming) => {
     // console.log(bookedAt, slotTiming);
-    let currentTime = new Date();
-    let currentYear = currentTime.getFullYear();
-    let currentMonth = currentTime.getMonth();
-    let currentDay = currentTime.getDate();
-    let currentHour = currentTime.getHours();
-    let currentMinute = currentTime.getMinutes();
-    let bookTime = new Date(bookedAt);
-    let bookYear = bookTime.getFullYear();
-    let bookMonth = bookTime.getMonth();
-    let bookDay = bookTime.getDate();
-    let bookHour = slotTiming.slice(8, 10);
-    let bookMinute = slotTiming.slice(11, 13);
-    // console.log( bookHour,  bookMinute );
-    if (currentYear < bookYear) {
-      return 1;
-    } else if (currentYear > bookYear) {
-      return 0;
-    } else {
-      if (currentMonth < bookMonth) {
-        return 1;
-      } else if (currentMonth > bookMonth) {
-        return 0;
-      } else {
-        if (currentDay < bookDay) {
-          return 1;
-        } else if (currentDay > bookDay) {
-          return 0;
-        } else {
-          if (currentHour < bookHour) {
-            return 1;
-          } else if (currentHour > bookHour) {
-            return 0;
-          } else {
-            if (currentMinute <= bookMinute) {
-              return 1;
-            } else {
-              return 0;
-            }
-          }
-        }
-      }
-    }
+    const currentDate = new Date();
+    const [bookedDay, bookedMonth, bookedYear] = bookedAt.split('/').map(Number);
+    const [slotStart, slotEnd] = slotTiming.split('-').map(time => {
+      const [hour, minute] = time.split(':').map(Number);
+      return new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), hour, minute);
+    });
+
+    const bookedDate = new Date(bookedYear, bookedMonth - 1, bookedDay);
+    const isSlotAfterCurrentTime = slotStart > currentDate;
+    const isSlotActive = currentDate >= slotStart && currentDate <= slotEnd && currentDate.getDate() === bookedDate.getDate();
+
+    return isSlotAfterCurrentTime || isSlotActive;
   };
   return (
     <>
@@ -99,7 +69,6 @@ function PumpDashboard() {
                       <th>Time Slot</th>
                       <th>Vehicle No</th>
                       <th>User Name</th>
-                      <th>Booked At</th>
                       <th>Booked On</th>
                     </tr>
                   </thead>
@@ -117,7 +86,6 @@ function PumpDashboard() {
                         <td>{slot.timeSlot}</td>
                         <td>{slot.vehicleNo}</td>
                         <td>{slot.userId.name}</td>
-                        <td>{slot.bookedAt.slice(11, 19)}</td>
                         <td>{slot.bookedAt.slice(0, 10)}</td>
                       </tr>
                     )}
@@ -134,7 +102,6 @@ function PumpDashboard() {
                       <th>Time Slot</th>
                       <th>Vehicle No</th>
                       <th>User Name</th>
-                      <th>Booked At</th>
                       <th>Booked On</th>
                     </tr>
                   </thead>
@@ -152,7 +119,6 @@ function PumpDashboard() {
                         <td>{slot.timeSlot}</td>
                         <td>{slot.vehicleNo}</td>
                         <td>{slot.userId.name}</td>
-                        <td>{slot.bookedAt.slice(11, 19)}</td>
                         <td>{slot.bookedAt.slice(0, 10)}</td>
                       </tr>
                     )}
@@ -164,7 +130,7 @@ function PumpDashboard() {
           </div>
           <div className="user-profile">
             {pumpData ? <>
-              <div className="img"><img src="" alt="" /></div>
+              <div className="img"><img src="https://ideogram.ai/api/images/direct/RxHg2V__QxeZi8TVDOITaw.jpg" alt="" /></div>
               <div className="user-info">
                 <h2>{pumpData.name}</h2>
                 <h3>{pumpData.email} </h3>

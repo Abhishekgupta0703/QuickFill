@@ -39,47 +39,18 @@ export default function ProfilePage() {
 
   const isSlotExpired = (bookedAt, slotTiming) => {
     // console.log(bookedAt, slotTiming);
-    let currentTime = new Date();
-    let currentYear = currentTime.getFullYear();
-    let currentMonth = currentTime.getMonth();
-    let currentDay = currentTime.getDate();
-    let currentHour = currentTime.getHours();
-    let currentMinute = currentTime.getMinutes();
-    let bookTime = new Date(bookedAt);
-    let bookYear = bookTime.getFullYear();
-    let bookMonth = bookTime.getMonth();
-    let bookDay = bookTime.getDate();
-    let bookHour = slotTiming.slice(8, 10);
-    let bookMinute = slotTiming.slice(11, 13);
-    if (currentYear < bookYear) {
-      return 1;
-    } else if (currentYear > bookYear) {
-      return 0;
-    } else {
-      if (currentMonth < bookMonth) {
-        return 1;
-      } else if (currentMonth > bookMonth) {
-        return 0;
-      } else {
-        if (currentDay < bookDay) {
-          return 1;
-        } else if (currentDay > bookDay) {
-          return 0;
-        } else {
-          if (currentHour < bookHour) {
-            return 1;
-          } else if (currentHour > bookHour) {
-            return 0;
-          } else {
-            if (currentMinute <= bookMinute) {
-              return 1;
-            } else {
-              return 0;
-            }
-          }
-        }
-      }
-    }
+    const currentDate = new Date();
+    const [bookedDay, bookedMonth, bookedYear] = bookedAt.split('/').map(Number);
+    const [slotStart, slotEnd] = slotTiming.split('-').map(time => {
+        const [hour, minute] = time.split(':').map(Number);
+        return new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), hour, minute);
+    });
+
+    const bookedDate = new Date(bookedYear, bookedMonth - 1, bookedDay);
+    const isSlotAfterCurrentTime = slotStart > currentDate;
+    const isSlotActive = currentDate >= slotStart && currentDate <= slotEnd && currentDate.getDate() === bookedDate.getDate();
+
+    return isSlotAfterCurrentTime || isSlotActive;
   };
 
   return (
@@ -89,7 +60,7 @@ export default function ProfilePage() {
       <div className="profile-inner">
         <div className="user-profile">
           {userData && <>
-            <div className="img"><img src="https://th.bing.com/th/id/OIP.zmZs_QkaybAwMDzn_OCeoQAAAA?rs=1&pid=ImgDetMain" alt="" /></div>
+            <div className="img"><h1>{userData.name.slice(0,1)}</h1></div>
             <div className="user-info">
               <h2>{userData.name}</h2>
               <h3>{userData.email}</h3>
@@ -107,7 +78,6 @@ export default function ProfilePage() {
                     <th>Time Slot</th>
                     <th>Vehicle No</th>
                     <th>Pump Name</th>
-                    <th>Booked At</th>
                     <th>Booked On</th>
                   </tr>
                 </thead>
@@ -126,7 +96,6 @@ export default function ProfilePage() {
                       <td>{slot.timeSlot}</td>
                       <td>{slot.vehicleNo}</td>
                       <td>{slot.pumpId.name}</td>
-                      <td>{slot.bookedAt.slice(11, 19)}</td>
                       <td>{slot.bookedAt.slice(0, 10)}</td>
                     </tr>
                   )}
@@ -143,7 +112,6 @@ export default function ProfilePage() {
                     <th>Time Slot</th>
                     <th>Vehicle No</th>
                     <th>Pump Name</th>
-                    <th>Booked At</th>
                     <th>Booked On</th>
                   </tr>
                 </thead>
@@ -161,7 +129,6 @@ export default function ProfilePage() {
                       <td>{slot.timeSlot}</td>
                       <td>{slot.vehicleNo}</td>
                       <td>{slot.pumpId.name}</td>
-                      <td>{slot.bookedAt.slice(11, 19)}</td>
                       <td>{slot.bookedAt.slice(0, 10)}</td>
                     </tr>
                   )}
@@ -207,23 +174,26 @@ export default function ProfilePage() {
               gap:30px;
               overflow:hidden;
               box-shadow:rgba(0, 0, 0, 0.4) 0px  6px 20px 0px ;
-
-              .img,
+.img{
+  text-align:center;
+  h1{
+    margin: 35px 0 0;
+    font-size:185px;
+    width: auto;
+    padding:40px ;
+    line-height:.65;
+    border-radius: 50%;
+    border: 10px solid #7474ff;
+    background:#b4b7ff;
+    box-shadow:  0 0 10px #00006f50;
+  }
+}
               .user-info{
                 text-align:center;
                 margin-top:45px;
-                // height:50vh;
                 width:100%;
                 padding-top:15px;
-                img{
-                  object-fit:cover;
-                  aspect-ratio:1;
-                  max-width:200px;
-                  max-height:200px;
-                  border-radius:50%;
-                  border:4px solid #fff;
-                  box-shadow: 0 0 20px rgba(0,0,0,.3) ;
-                }
+               
                 a{
                   text-decoration:none;
                   color:white;

@@ -23,7 +23,7 @@ export default function App() {
     <div>
       <BrowserRouter>
         <Navbar />
-        <Toaster position='bottom-center' toastOptions={{duration: 2000}} />
+        <Toaster position='top-center' toastOptions={{duration: 2000}} />
 
         <Routes>
           <Route exact path='/' element={<Home />} />
